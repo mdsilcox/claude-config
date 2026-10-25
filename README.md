@@ -60,6 +60,11 @@ docs/      the research report and raw notes
 **Each project**
 Copy `~/.claude/templates/project/` into the repo. Set `FAST_CHECK` (under a minute) and `FORMAT_RULES` in its `.claude/settings.json`. Re-cut any existing CLAUDE.md to commands with timings, which machine runs them, gotchas and pointers.
 
+## Known limits
+- **Glob deny rules on Linux:** the sandbox can't enforce glob rules such as `Read(//**/.env)` (`claude doctor` warns about this on dev). Claude's Read tool still refuses those files, but a sandboxed `cat .env` isn't blocked. Keep real secrets out of the repos on dev.
+- **Credential scrubbing is off on dev:** `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1` forces headless `claude -p` runs into default mode, so `--permission-mode auto` stops working, and dev keeps no credentials in environment variables anyway (Git's token is in `~/.git-credentials`, scoped read-only).
+- **The guard hook is a tripwire, not a boundary:** a delete hidden inside a script passes it. On Windows, the backstop is backups and keeping unattended work off the machine.
+
 ## Maintenance
 - **Monthly:** run `/usage`, `/skill-doctor` and `/doctor prompt-audit`, and prune anything that hasn't earned its place.
 - **After a major model release, or every three to six months:** rerun the [personal benchmark](benchmark/README.md) and revisit the defaults.

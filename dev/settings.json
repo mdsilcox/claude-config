@@ -49,7 +49,6 @@
   "env": {
     "CLAUDE_CODE_TOOL_MEMORY_LIMIT": "3G",
     "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "3",
-    "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1",
     "VAULT_DIR": "/home/mdsilcox/knowledge-vault-data"
   },
   "statusLine": {
