@@ -53,7 +53,7 @@ docs/      the research report and raw notes
 
 **dev VM**
 1. `git clone https://github.com/mdsilcox/claude-config.git ~/claude-config && cd ~/claude-config`. Or copy it over with `scp`.
-2. Run `sudo bash install/dev-root.sh`: the sandbox packages, the AppArmor profile for bubblewrap, and lingering.
+2. Run `sudo bash install/dev-root.sh`. It installs the sandbox packages and the AppArmor profile for bubblewrap, and turns on lingering. It also disables Ubuntu's `bwrap-userns-restrict` profile, which on Ubuntu 25.10 and later overrides that profile and makes every sandboxed command fail.
 3. Run `bash install/install-dev.sh`: Claude Code, the config, tmux, and basic-memory.
 4. Run `claude auth login`, clone the vault (the script prints how), rerun the script, then run `claude doctor`.
 
