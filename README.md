@@ -23,9 +23,9 @@ windows/   CLAUDE.md, settings.json   global files for the desktop
 dev/       CLAUDE.md, settings.json   global files for the dev VM (sandbox on)
 shared/
   agents/  reviewer (Opus, fresh-context review), Explore (Sonnet search)
-  skills/  vault (note conventions)
-  hooks/   guard_deletes, stop_gate, format_on_edit, vault_pull, statusline, quiet_tests
-templates/project/   CLAUDE.md, .claude/settings.json, verify skill, .gitattributes
+  skills/  vault (note conventions), verify (runs FAST_CHECK before commits)
+  hooks/   project_setup, guard_deletes, stop_gate, format_on_edit, vault_pull, statusline, quiet_tests
+templates/project/   CLAUDE.md, .claude/settings.json, .gitattributes (what project_setup follows)
 install/   install-windows.ps1, dev-root.sh (sudo), install-dev.sh, tmux.conf
 benchmark/ how to measure this setup on my own tasks
 tests/     hook tests (standard library only)
@@ -57,8 +57,14 @@ docs/      the research report and raw notes
 3. Run `bash install/install-dev.sh`: Claude Code, the config, tmux, and basic-memory.
 4. Run `claude auth login`, clone the vault (the script prints how), rerun the script, then run `claude doctor`.
 
-**Each project**
-Copy `~/.claude/templates/project/` into the repo. Set `FAST_CHECK` (under a minute) and `FORMAT_RULES` in its `.claude/settings.json`. Re-cut any existing CLAUDE.md to commands with timings, which machine runs them, gotchas and pointers.
+**Each project: automatic**
+When a session starts in a git repo that has no CLAUDE.md or no `FAST_CHECK`, the `project_setup` hook tells Claude to set it up first. Claude then works out what the template can't know:
+- a CLAUDE.md with the real commands and their timings;
+- a `FAST_CHECK`, which it times;
+- `FORMAT_RULES` for the formatter the project already uses;
+- a `.gitattributes`.
+
+It tells you what it set, and doesn't commit. If `FAST_CHECK` was left empty because a project had no tests, the hook reminds Claude once tests appear. To keep a repo out of this, add an empty `.claude/no-auto-setup`. The `verify` skill is global, so projects don't need a copy.
 
 ## Known limits
 - **Glob deny rules on Linux:** the sandbox can't enforce glob rules such as `Read(//**/.env)` (`claude doctor` warns about this on dev). Claude's Read tool still refuses those files, but a sandboxed `cat .env` isn't blocked. Keep real secrets out of the repos on dev.

@@ -55,7 +55,8 @@
       {
         "matcher": "startup",
         "hooks": [
-          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/vault_pull.py", "timeout": 20 }
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/vault_pull.py", "timeout": 20 },
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/project_setup.py", "timeout": 15 }
         ]
       }
     ],

@@ -34,6 +34,7 @@ if live; then
   for f in CLAUDE.md settings.json agents skills hooks tools templates; do
     if [ -e "$C/$f" ]; then cp -a "$C/$f" "$BACKUP/"; fi
   done
+  rm -rf "${C:?}/templates/project"   # rebuilt from the repo below, so removed files don't linger
   mkdir -p "$C/hooks" "$C/agents" "$C/skills" "$C/templates"
   cp -a "$REPO/shared/hooks/." "$C/hooks/"
   cp -a "$REPO/shared/agents/." "$C/agents/"

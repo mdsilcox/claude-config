@@ -60,7 +60,8 @@
       {
         "matcher": "startup",
         "hooks": [
-          { "type": "command", "command": "python3 /home/mdsilcox/.claude/hooks/vault_pull.py", "timeout": 20 }
+          { "type": "command", "command": "python3 /home/mdsilcox/.claude/hooks/vault_pull.py", "timeout": 20 },
+          { "type": "command", "command": "python3 /home/mdsilcox/.claude/hooks/project_setup.py", "timeout": 15 }
         ]
       }
     ],

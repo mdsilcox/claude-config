@@ -37,8 +37,8 @@ Invoke-Step 'Create the hooks interpreter (a uv-managed venv; the hooks use the 
     if (-not (Test-Path (Join-Path $venv 'Scripts\python.exe'))) { uv venv --python 3.12 $venv | Out-Host }
 }
 
-Invoke-Step 'Retire the old agents, skills and tools (they stay in the backup)' {
-    foreach ($dir in 'agents', 'skills', 'tools') {
+Invoke-Step 'Retire the old agents, skills, tools and templates (they stay in the backup)' {
+    foreach ($dir in 'agents', 'skills', 'tools', 'templates') {
         $path = Join-Path $Claude $dir
         if (Test-Path $path) {
             Get-ChildItem -Path $path -Force | Where-Object { $_.Name -ne 'synced' } | Remove-Item -Recurse -Force
