@@ -1,8 +1,9 @@
 """PreToolUse hook (Bash): route a plain pytest run through quiet_tests.py so only failures and the
 summary reach the model. Follows the pattern in Claude Code's cost docs.
 
-Only a command that is nothing but a pytest run is rewritten: optional VAR=value prefixes, then
-`pytest ...` or `<python> -m pytest ...`, with no ; & | < > ` $( or newlines. Because the rewrite
+Only a command that is nothing but a pytest run is rewritten: optional VAR=value prefixes and an
+optional `uv run [options]`, then `pytest ...` or `<python> -m pytest ...`, with no ; & | < > ` $( or
+newlines. Because the rewrite
 returns permissionDecision "allow", anything more complex passes through untouched and goes through
 the normal permission check. Opt out of filtering for one run by adding "# full-output".
 """
@@ -16,6 +17,7 @@ FILTER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "quiet_tests.p
 PYTHON = sys.executable.replace("\\", "/")  # the hook's own interpreter: works on Windows and Linux
 PLAIN_PYTEST = re.compile(
     r"^\s*(?:[A-Za-z_][A-Za-z0-9_]*=\S*\s+)*"           # optional env assignments
+    r"(?:uv\s+run\s+(?:-\S+(?:\s+(?!-|pytest\b|\S*python)\S+)?\s+)*)?"  # optional uv run and its options
     r"(?:pytest|\S*python[0-9.]*(?:\.exe)?\s+-m\s+pytest)"  # pytest, or <python> -m pytest
     r"(?:\s+[^;&|<>`$\n]*)?\s*$"                          # arguments, nothing that chains or redirects
 )
