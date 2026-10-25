@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "autoUpdatesChannel": "stable",
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true
+  },
+  "permissions": {
+    "defaultMode": "auto",
+    "disableBypassPermissionsMode": "disable",
+    "deny": [
+      "Read(//**/.env)",
+      "Read(//**/.env.local)",
+      "Read(//**/.env.*.local)",
+      "Read(//**/.env.prod*)",
+      "Read(//**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.claude/.credentials.json)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "PowerShell(git push *)",
+      "Bash(gh pr merge *)",
+      "PowerShell(gh pr merge *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "PowerShell(Remove-Item *)",
+      "Bash(docker run *)",
+      "PowerShell(docker run *)",
+      "Bash(docker system prune *)",
+      "PowerShell(docker system prune *)",
+      "Bash(docker volume *)",
+      "PowerShell(docker volume *)",
+      "mcp__basic-memory__edit_note",
+      "mcp__basic-memory__move_note",
+      "mcp__basic-memory__delete_note"
+    ]
+  },
+  "env": {
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8",
+    "VAULT_DIR": "E:/Backup Desktop/Claude Code Projects/knowledge-vault-data"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/statusline.py"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/vault_pull.py", "timeout": 20 }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/guard_deletes.py", "timeout": 10 }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/quiet_tests_hook.py", "timeout": 10 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/format_on_edit.py", "timeout": 60 }
+        ]
+      },
+      {
+        "matcher": "mcp__basic-memory__(write_note|edit_note|move_note|delete_note)",
+        "hooks": [
+          { "type": "command", "command": "\"E:/Backup Desktop/Claude Code Projects/Knowledge Vault/.venv/Scripts/python.exe\" -m kv sync --vault \"E:/Backup Desktop/Claude Code Projects/knowledge-vault-data\"", "timeout": 60 }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/stop_gate.py", "timeout": 300 }
+        ]
+      }
+    ]
+  }
+}

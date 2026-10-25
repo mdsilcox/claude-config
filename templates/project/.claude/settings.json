@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "FAST_CHECK": "uv run pytest tests/unit -q -x && uv run ruff check .",
+    "FORMAT_RULES": "*.py=uv run ruff format {file}"
+  },
+  "permissions": {
+    "deny": [
+      "Edit(/tests/acceptance/**)"
+    ]
+  }
+}
