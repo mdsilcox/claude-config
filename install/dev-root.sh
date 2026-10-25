@@ -35,6 +35,21 @@ else
   echo "   not needed, or already present"
 fi
 
+# Ubuntu 25.10 and later ship /etc/apparmor.d/bwrap-userns-restrict in the apparmor package. It defines a
+# second profile named bwrap for /usr/bin/bwrap that overrides the one above and confines every command
+# bubblewrap runs (bwrap//&unpriv_bwrap). Claude Code's seccomp helper then can't map IDs in its nested
+# user namespace, and every sandboxed command fails with "apply-seccomp: write /proc/self/setgroups ...
+# Permission denied". Disabling it lets the profile above apply, as on Ubuntu 24.04.
+echo "== 2b. Ubuntu's conflicting bwrap-userns-restrict profile"
+if [ -f /etc/apparmor.d/bwrap-userns-restrict ] && [ ! -e /etc/apparmor.d/disable/bwrap-userns-restrict ]; then
+  ln -s /etc/apparmor.d/bwrap-userns-restrict /etc/apparmor.d/disable/bwrap-userns-restrict
+  apparmor_parser -R /etc/apparmor.d/bwrap-userns-restrict || true
+  apparmor_parser -r /etc/apparmor.d/bwrap
+  echo "   disabled; /etc/apparmor.d/bwrap now applies"
+else
+  echo "   not present, or already disabled"
+fi
+
 echo "== 3. Lingering for $TARGET_USER"
 loginctl enable-linger "$TARGET_USER"
 
