@@ -18,7 +18,12 @@
       "mcp__basic-memory__write_note",
       "mcp__basic-memory__edit_note",
       "mcp__basic-memory__move_note",
-      "mcp__basic-memory__delete_note"
+      "mcp__basic-memory__delete_note",
+      "Bash(git push origin --delete main*)"
+    ],
+    "allow": [
+      "Bash(git push origin --delete *)",
+      "Bash(git branch -d *)"
     ],
     "ask": [
       "Bash(gh pr merge *)",

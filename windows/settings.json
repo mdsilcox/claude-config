@@ -23,7 +23,15 @@
       "Read(~/.config/gh/**)",
       "Read(~/.git-credentials)",
       "Read(~/.docker/config.json)",
-      "Read(~/.claude/.credentials.json)"
+      "Read(~/.claude/.credentials.json)",
+      "Bash(git push origin --delete main*)",
+      "PowerShell(git push origin --delete main*)"
+    ],
+    "allow": [
+      "Bash(git push origin --delete *)",
+      "PowerShell(git push origin --delete *)",
+      "Bash(git branch -d *)",
+      "PowerShell(git branch -d *)"
     ],
     "ask": [
       "Bash(gh pr merge *)",

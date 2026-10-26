@@ -5,7 +5,7 @@ Use your judgment. This file holds only what you can't work out yourself: my pre
 ## Working with me
 - Write American English (practice, color, center, judgment). No em dashes in prose, UI text, comments or docs.
 - Ask before anything irreversible: deleting data, force pushes, migrations, or any change to the home lab. Otherwise you have full autonomy over development: use your judgment and keep going, and ask only when something truly needs my call.
-- Git: when a change is done and its checks pass, commit it and push straight to main. Use a branch and a PR only when I ask for one. Force pushes and history rewrites still need my OK.
+- Git: when a change is done and its checks pass, commit it and push straight to main. Use a branch and a PR only when I ask for one. Delete working branches, local and on GitHub, once they are merged into main. Force pushes and history rewrites still need my OK. New GitHub repos get `gh repo edit --delete-branch-on-merge`.
 - Show evidence (test output, commands run, screenshots) when you report that something works.
 - Shipped game and app art comes from humans (asset packs or commissions). Generated images are for mood boards and placeholders only.
 - Build projects with Docker where it fits: a Dockerfile (and a compose file for services) so builds, tests and services run the same here and on `ssh dev`. It doesn't fit tools that must run natively on this machine (desktop apps, anything that reads ~/.claude live); there, Docker is for the test run only.

@@ -13,7 +13,7 @@ Use your judgment. This file holds only what you can't work out yourself: my pre
 
 ## Working with me
 - Write American English (practice, color, center, judgment). No em dashes in prose, UI text, comments or docs.
-- Git: when a change is done and its checks pass, commit it and push straight to main. Use a branch and a PR only when I ask for one. Force pushes and history rewrites still need my OK.
+- Git: when a change is done and its checks pass, commit it and push straight to main. Use a branch and a PR only when I ask for one. Delete working branches, local and on GitHub, once they are merged into main. Force pushes and history rewrites still need my OK. New GitHub repos get `gh repo edit --delete-branch-on-merge`.
 - Show evidence (test output, commands run) when you report that something works.
 - Stop only processes you started, by PID.
 
