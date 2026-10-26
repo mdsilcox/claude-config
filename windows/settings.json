@@ -26,8 +26,6 @@
       "Read(~/.claude/.credentials.json)"
     ],
     "ask": [
-      "Bash(git push *)",
-      "PowerShell(git push *)",
       "Bash(gh pr merge *)",
       "PowerShell(gh pr merge *)",
       "Bash(rm -rf *)",
