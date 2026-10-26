@@ -5,7 +5,7 @@ code, so no overviews, file tours, style rules (the formatter handles those) or 
 line only after a real, repeated mistake. Delete these comments. -->
 
 ## Must not miss
-- Tests in tests/acceptance/ are the spec: never edit them during implementation (settings deny it).
+- Tests in tests/acceptance/ are the spec. Drafts until on main; after that never edited, only retired with `git rm` when a request contradicts them (see the global CLAUDE.md).
 - Run the fast check before every commit and paste its summary.
 
 ## Commands (dev VM unless marked Windows)

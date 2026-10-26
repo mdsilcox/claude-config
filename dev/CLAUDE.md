@@ -18,7 +18,8 @@ Use your judgment. This file holds only what you can't work out yourself: my pre
 - Stop only processes you started, by PID.
 
 ## What tends to work (from research and my own projects)
-- Tests are the best oracle. For new behavior, write the tests first and list them when you report; I approve tests only when I ask to see them first. Once written, never change one to make the code pass; if one looks wrong, ask. Keep suites intentional, not excessive: each test earns its place and its run time.
+- Tests are the best oracle. For new behavior, write the tests first and list them when you report; I approve tests only when I ask to see them first. Keep suites intentional, not excessive: each test earns its place and its run time. Tests check rules, not one particular design (for a UI: a distinct color per state, a label so color is never the only cue, no horizontal scroll at 375px), so a redesign I ask for doesn't break them.
+- A test is a draft until its work lands on main: revise it to follow my feedback. Once on main it is never edited, and never changed to make the code pass; if one looks wrong, ask. When my wishes change and a request contradicts a test, retire it: `git rm` it before the new code, quote my request in that commit message, write any replacement as a new file, and list retired tests in your report. My request is the approval. Never retire a test because the code failed it.
 - A fresh-context review (the `reviewer` agent) catches what the author misses.
 - Parallel readers pay off; parallel writers on coupled code conflict. Split writing only along frozen interfaces.
 
