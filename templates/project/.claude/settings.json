@@ -4,9 +4,18 @@
     "FAST_CHECK": "uv run pytest tests/unit -q -x && uv run ruff check .",
     "FORMAT_RULES": "*.py=uv run ruff format {file}"
   },
-  "permissions": {
-    "deny": [
-      "Edit(/tests/acceptance/**)"
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_tests.py\"",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   }
 }
