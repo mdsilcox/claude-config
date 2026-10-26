@@ -3,6 +3,9 @@
   "autoUpdatesChannel": "stable",
   "theme": "dark",
   "agentPushNotifEnabled": true,
+  "modelSettings": {
+    "claude-opus-5-5": { "autoCompactWindow": 300000 }
+  },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true
   },
