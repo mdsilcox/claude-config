@@ -58,6 +58,11 @@
           { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/vault_pull.py", "timeout": 20 },
           { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/project_setup.py", "timeout": 15 }
         ]
+      },
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
       }
     ],
     "PreToolUse": [
@@ -71,6 +76,11 @@
         "matcher": "Bash",
         "hooks": [
           { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/quiet_tests_hook.py", "timeout": 10 }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
         ]
       }
     ],
@@ -86,12 +96,99 @@
         "hooks": [
           { "type": "command", "command": "\"E:/Backup Desktop/Claude Code Projects/Knowledge Vault/.venv/Scripts/python.exe\" -m kv sync --vault \"E:/Backup Desktop/Claude Code Projects/knowledge-vault-data\"", "timeout": 60 }
         ]
+      },
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
       }
     ],
     "Stop": [
       {
         "hooks": [
           { "type": "command", "command": "C:/Users/mikha/.claude/hooks/.venv/Scripts/python.exe C:/Users/mikha/.claude/hooks/stop_gate.py", "timeout": 300 }
+        ]
+      },
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "PermissionDenied": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "hooks": [
+          { "type": "http", "url": "http://127.0.0.1:4777/hook", "timeout": 1 }
         ]
       }
     ]
