@@ -4,12 +4,14 @@ Use your judgment. This file holds only what you can't work out yourself: my pre
 
 ## Working with me
 - Write American English (practice, color, center, judgment). No em dashes in prose, UI text, comments or docs.
-- Ask before anything irreversible: deleting data, force pushes, migrations, or any change to the home lab. Otherwise use your judgment and keep going.
+- Ask before anything irreversible: deleting data, force pushes, migrations, or any change to the home lab. Otherwise you have full autonomy over development: use your judgment and keep going, and ask only when something truly needs my call.
+- Git: when a change is done and its checks pass, commit it and push straight to main. Use a branch and a PR only when I ask for one. Force pushes and history rewrites still need my OK.
 - Show evidence (test output, commands run, screenshots) when you report that something works.
 - Shipped game and app art comes from humans (asset packs or commissions). Generated images are for mood boards and placeholders only.
+- Build projects with Docker where it fits: a Dockerfile (and a compose file for services) so builds, tests and services run the same here and on `ssh dev`. It doesn't fit tools that must run natively on this machine (desktop apps, anything that reads ~/.claude live); there, Docker is for the test run only.
 
 ## What tends to work (from research and my own projects)
-- Tests I've approved are the best oracle. For new behavior, write the tests first and show them to me, and never change them to make the code pass.
+- Tests are the best oracle. For new behavior, write the tests first and list them when you report; I approve tests only when I ask to see them first. Once written, never change one to make the code pass; if one looks wrong, ask. Keep suites intentional, not excessive: each test earns its place and its run time.
 - A fresh-context review catches what the author misses; the `reviewer` agent is there for non-trivial diffs.
 - Parallel agents pay off for reading, searching and reviewing. Parallel writers on coupled code conflict and redo each other's work, so split writing only along frozen interfaces and disjoint files.
 - Long sessions degrade. Keep state in files (a plan, a spec, notes) so that a fresh session can pick up the work.
